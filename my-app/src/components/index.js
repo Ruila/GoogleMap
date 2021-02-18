@@ -16,8 +16,13 @@ class Map extends Component  {
         },
         zoom: 11
     }
-   
+    this.handleApiLoaded = this.handleApiLoaded.bind(this);
   }
+
+  handleApiLoaded = (map, maps) => {
+    // use map and maps objects
+    console.log('載入完成!') // 印出「載入完成」
+  };
 
   
   render(){
@@ -28,6 +33,8 @@ class Map extends Component  {
             bootstrapURLKeys={{ key: apikey }}
             defaultCenter={this.state.center}
             defaultZoom={this.state.zoom}
+            yesIWantToUseGoogleMapApiInternals // 設定為 true
+            onGoogleApiLoaded={({ map, maps }) => this.handleApiLoaded(map, maps)} // 載入完成後執行
             >
             <AnyReactComponent
                 lat={25.04}
