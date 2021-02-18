@@ -1,0 +1,10 @@
+#map {
+    display: flex;
+    justify-content: center;
+    padding-top: 70px;
+}
+
+#map .content{
+    width: 800px;
+    height: 500px;
+}
