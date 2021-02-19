@@ -3,11 +3,11 @@ import axios from 'axios';
 import {apikey} from "../key/mapkey.js";
 import GoogleMapReact from 'google-map-react';
 import MyPositionMarker from './myMaker.js';
+import LocationMarker from './locationMarker.js';
 import '../css/style.css';
 
 class Map extends Component  {
   constructor() {
-    
     super();
     this.state = {
         center: {
@@ -17,13 +17,15 @@ class Map extends Component  {
         mapApiLoaded: false,
         mapInstance: null,
         mapApi: null,
-        zoom: 11
+        zoom: 11,
+        places: []
     };
     this.handleApiLoaded = this.handleApiLoaded.bind(this);
     this.handleCenterChange = this.handleCenterChange.bind(this);
     this.setMapApi = this.setMapApi.bind(this);
     this.setMapApiLoaded = this.setMapApiLoaded.bind(this);
     this.setMapInstance = this.setMapInstance.bind(this);
+    this.findRestaurant = this.findRestaurant.bind(this);
 
   }
   setMapInstance(map) {
@@ -36,6 +38,7 @@ class Map extends Component  {
     this.setState({mapApiLoaded: boolean})
   }
   handleCenterChange () {
+    console.log('check22', this.state.mapApiLoaded)
    if(this.state.mapApiLoaded){
      this.props.setMyPosition(this.state.mapInstance.center.lat(), this.state.mapInstance.center.lng())
    }
@@ -49,13 +52,45 @@ class Map extends Component  {
     console.log('載入完成!') // 印出「載入完成」
   };
 
+  findRestaurant () {
+    console.log('this.props.myPosition_lat', this.props.myPosition_lat)
+    if(this.state.mapApiLoaded) {
+      const service = new this.state.mapApi.places.PlacesService(this.state.mapInstance)
+
+      const request = {
+        location: {
+          lat: this.props.myPosition_lat,
+          lng: this.props.myPosition_lng
+        },
+        radius: 100000,
+        type: ['restaurant']
+      }
+
+      service.nearbySearch(request, (results, status) => {
+        if(status === this.state.mapApi.places.PlacesServiceStatus.OK) {
+          console.log(results)
+          this.setState({places: results})
+        }
+      })
+    }
+  }
+
   
   render(){
+   const placesList = this.state.places.map(item=>{
+     return <LocationMarker
+               key={item.place_id}
+               lat={item.geometry.location.lat()} 
+               lng={item.geometry.location.lng()}
+               placeId={item.plcae_id}
+               text={item.name}/>
+   })
    return (
        <div id="map">
+         <input type="button" value="找餐廳" onClick={this.findRestaurant} />
         <div className="content">
             <GoogleMapReact
-            bootstrapURLKeys={{ key: apikey }}
+            bootstrapURLKeys={{ key: apikey, libraries:['places'] }}
             onChange={this.handleCenterChange}
             defaultCenter={this.state.center}
             defaultZoom={this.state.zoom}
@@ -67,6 +102,7 @@ class Map extends Component  {
                   lng={this.props.myPosition_lng}
                   text="My Marker"
               />
+              {placesList}
             </GoogleMapReact>
         </div>
        </div>

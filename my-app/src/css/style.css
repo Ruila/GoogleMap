@@ -8,3 +8,10 @@
     width: 800px;
     height: 500px;
 }
+
+.LocationMarker .dot {
+    width: 25px;
+    height: 25px;
+    background-color: blue;
+    border-radius: 50%;
+}
