@@ -4,7 +4,7 @@ import {apikey} from "../key/mapkey.js";
 import GoogleMapReact from 'google-map-react';
 import MyPositionMarker from './myMaker.js';
 import LocationMarker from './locationMarker.js';
-import Board from './informationBoard.js'
+import Board from './board.js'
 import '../css/style.css';
 
 class Map extends Component  {

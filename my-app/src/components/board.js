@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-class InformationBoard extends Component {
+class Board extends Component {
   constructor(props) {
     super(props);
     this.state={ 
@@ -54,7 +54,7 @@ class InformationBoard extends Component {
             </div>
     })
     return(
-      <div id="InformationBoard">
+      <div id="Board">
         <div className="filter">
           <div className="btn" onClick={this.filterRating}>
             <span>評價(高-低)</span>
@@ -72,4 +72,4 @@ class InformationBoard extends Component {
   }
 }
 
-export default InformationBoard;
+export default Board;

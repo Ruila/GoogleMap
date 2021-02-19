@@ -10,14 +10,14 @@
     height: 500px;
 }
 
-#LocationMarker .dot {
+#locationMarker .dot {
     width: 15px;
     height: 15px;
     background-color: rgb(23, 139, 248);
     border-radius: 50%;
 }
 
-#InformationBoard {
+#Board {
     width: 300px;
     height: 400px;
     background-color: #e9e9f2;
@@ -32,25 +32,25 @@
     padding: 10px;
     overflow-y: scroll
 }
-#InformationBoard .filter {
+#Board .filter {
     display: flex;
 }
-#InformationBoard .filter .btn {
+#Board .filter .btn {
     flex: 1;
     background-color: #000000;
     color: white;
     cursor: pointer;
 }
-#InformationBoard .filter .btn:hover {
+#Board .filter .btn:hover {
     background-color: #ffffff;
     color: black;
 }
-#InformationBoard .location_unit {
+#Board .location_unit {
     cursor: pointer;
 
 }
 
-#InformationBoard .location_unit:hover {
+#Board .location_unit:hover {
     background-color: brown;
     color: white;
 }

@@ -11,7 +11,7 @@ class LocationMarker extends Component {
   }
   render(){
     return(
-      <div id="LocationMarker">
+      <div id="locationMarker">
         <div className="dot"></div>
         <div>{this.props.text}</div>
       </div>
