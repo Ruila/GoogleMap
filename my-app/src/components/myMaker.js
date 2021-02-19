@@ -11,7 +11,7 @@ class MyMaker extends Component {
   }
   render(){
     return(
-      <div className="MyMaker">
+      <div id="MyMaker">
         {this.state.text}
       </div>
     );

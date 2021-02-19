@@ -4,6 +4,7 @@ import {apikey} from "../key/mapkey.js";
 import GoogleMapReact from 'google-map-react';
 import MyPositionMarker from './myMaker.js';
 import LocationMarker from './locationMarker.js';
+import Board from './informationBoard.js'
 import '../css/style.css';
 
 class Map extends Component  {
@@ -17,7 +18,7 @@ class Map extends Component  {
         mapApiLoaded: false,
         mapInstance: null,
         mapApi: null,
-        zoom: 11,
+        zoom: 15,
         places: []
     };
     this.handleApiLoaded = this.handleApiLoaded.bind(this);
@@ -38,9 +39,10 @@ class Map extends Component  {
     this.setState({mapApiLoaded: boolean})
   }
   handleCenterChange () {
-    console.log('check22', this.state.mapApiLoaded)
+    // console.log('check22', this.state.mapApiLoaded)
    if(this.state.mapApiLoaded){
      this.props.setMyPosition(this.state.mapInstance.center.lat(), this.state.mapInstance.center.lng())
+     this.findRestaurant(this.state.mapInstance.center.lat(), this.state.mapInstance.center.lng())
    }
   }
 
@@ -52,15 +54,15 @@ class Map extends Component  {
     console.log('載入完成!') // 印出「載入完成」
   };
 
-  findRestaurant () {
-    console.log('this.props.myPosition_lat', this.props.myPosition_lat)
+  findRestaurant (lat, lng) {
+    // console.log('this.props.myPosition_lat', this.props.myPosition_lat)
     if(this.state.mapApiLoaded) {
       const service = new this.state.mapApi.places.PlacesService(this.state.mapInstance)
 
       const request = {
         location: {
-          lat: this.props.myPosition_lat,
-          lng: this.props.myPosition_lng
+          lat: lat,
+          lng: lng
         },
         radius: 100000,
         type: ['restaurant']
@@ -87,7 +89,6 @@ class Map extends Component  {
    })
    return (
        <div id="map">
-         <input type="button" value="找餐廳" onClick={this.findRestaurant} />
         <div className="content">
             <GoogleMapReact
             bootstrapURLKeys={{ key: apikey, libraries:['places'] }}
@@ -105,6 +106,11 @@ class Map extends Component  {
               {placesList}
             </GoogleMapReact>
         </div>
+        <Board 
+          places={this.state.places}
+          my_lat={this.props.myPosition_lat}
+          my_lng={this.props.myPosition_lng}
+          />
        </div>
    )
     

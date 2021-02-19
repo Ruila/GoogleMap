@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  position: relative;
+}
+
+#root {
+  position: relative;
 }
 
 .App-logo {
