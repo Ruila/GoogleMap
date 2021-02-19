@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-
+import InformationBlock from './informationBlock.js';
 
 class Board extends Component {
   constructor(props) {
     super(props);
     this.state={ 
-      places: []
+      places: [],
+      informBlockShow: false,
     }
     this.filterRating = this.filterRating.bind(this);
     this.filterPrice = this.filterPrice.bind(this);
+    this.showInformBlock = this.showInformBlock.bind(this);
+    this.hideInformBlock = this.hideInformBlock.bind(this);
   }
   componentDidMount () {
     
@@ -18,7 +21,7 @@ class Board extends Component {
       this.setState({places: this.props.places})
       }
   }
-  filterPrice() {
+  filterPrice () {
     let ary = JSON.parse(JSON.stringify(this.state.places));
       for(let i=0; i<ary.length; i++) {
         for(let j=0; j<ary.length-i-1;j++) {
@@ -34,7 +37,7 @@ class Board extends Component {
       }
       this.setState({places: ary})
   }
-  filterRating() {
+  filterRating () {
       let ary = JSON.parse(JSON.stringify(this.state.places));
       for(let i=0; i<ary.length; i++) {
         for(let j=0; j<ary.length-i-1;j++) {
@@ -47,14 +50,21 @@ class Board extends Component {
       }
       this.setState({places: ary})
   }
+  showInformBlock () {
+    this.setState({informBlockShow: true})
+  }
+  hideInformBlock () {
+    this.setState({informBlockShow: false})
+  }
   render(){
     const placesList = this.state.places.map(item=>{
-      return <div key={item.place_id} className="location_unit">
+      return <div key={item.place_id} className="location_unit" onMouseEnter={this.showInformBlock} onMouseLeave={this.hideInformBlock}>
               <h5>{item.name}</h5>
             </div>
     })
     return(
       <div id="Board">
+        <InformationBlock informBlockShow={this.state.informBlockShow} />
         <div className="filter">
           <div className="btn" onClick={this.filterRating}>
             <span>評價(高-低)</span>

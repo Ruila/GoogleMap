@@ -47,15 +47,26 @@
 }
 #Board .location_unit {
     cursor: pointer;
-
 }
-
-#Board .location_unit:hover {
+#Board .location_unit h5:hover {
     background-color: brown;
     color: white;
 }
 
 h5 {
-    margin: 5px 0;
+    padding: 5px 0;
+    margin: 0;
     text-align: left;
+}
+
+#informationBlock {
+    width: 200px;
+    height: 100px;
+    background-color: #ffffff;
+    position: fixed;
+    left: 50px;
+}
+
+.hide {
+    display: none;
 }

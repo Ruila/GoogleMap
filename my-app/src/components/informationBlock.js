@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-class MyMaker extends Component {
+class InformationBlock extends Component {
   constructor(props) {
     super(props);
     this.state={ 
@@ -11,11 +11,11 @@ class MyMaker extends Component {
   }
   render(){
     return(
-      <div id="myMaker">
+      <div id="informationBlock" className={`${this.props.informBlockShow?'': 'hide'}`}>
         {this.state.text}
       </div>
     );
   }
 }
 
-export default MyMaker;
+export default InformationBlock;
