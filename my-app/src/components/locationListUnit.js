@@ -12,7 +12,7 @@ class LocationListUnit extends Component {
   }
   showInformBlock () {
     this.setState({informBlockShow: true})
-    this.props.dispatch({type: 'SHOW', place_idx: this.props.idx});
+    this.props.dispatch({type: 'SHOW', place_idx: this.props.idx, place_id: this.props.location_info.place_id});
   }
   hideInformBlock () {
     this.setState({informBlockShow: false})

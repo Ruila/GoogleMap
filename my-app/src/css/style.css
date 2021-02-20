@@ -5,9 +5,15 @@
     position: relative;
 }
 
-#map .content{
+#map .content {
     width: 100%;
     height: 500px;
+}
+
+#locationMarker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #locationMarker .dot {
@@ -15,6 +21,16 @@
     height: 15px;
     background-color: rgb(23, 139, 248);
     border-radius: 50%;
+    cursor: pointer;
+    z-index: 2225;
+}
+
+#locationMarker .name {
+    min-width: 100px;
+    background-color: #369dfe;
+    color: #ffffff;
+    border-radius: 10px;
+    opacity: 0;
 }
 
 #Board {
@@ -32,22 +48,27 @@
     padding: 10px;
     overflow-y: scroll
 }
+
 #Board .filter {
     display: flex;
 }
+
 #Board .filter .btn {
     flex: 1;
     background-color: #000000;
     color: white;
     cursor: pointer;
 }
+
 #Board .filter .btn:hover {
     background-color: #ffffff;
     color: black;
 }
+
 #Board .location_unit {
     cursor: pointer;
 }
+
 #Board .location_unit h5:hover {
     background-color: brown;
     color: white;
@@ -76,5 +97,9 @@ h5 {
 }
 
 .hide {
-    display: none;
+    opacity: 0!important;
+}
+
+.show {
+    opacity: .7!important;
 }

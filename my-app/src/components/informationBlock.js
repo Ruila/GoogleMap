@@ -37,7 +37,6 @@ class InformationBlock extends Component {
 }
 function mapStateToProps(state) {
   return {
-    shopInfo: state.shopInfo,
     informblock: state.informblock,
   }
 }

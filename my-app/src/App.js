@@ -7,8 +7,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state={ 
-      myPosition_lat: 25.04,
-      myPosition_lng: 121.50
+      myPosition_lat: 25.033710,
+      myPosition_lng: 121.564718
     }
     this.setMyPosition = this.setMyPosition.bind(this);
   }

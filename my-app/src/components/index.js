@@ -13,8 +13,8 @@ class Map extends Component  {
     super();
     this.state = {
         center: {
-            lat: 25.04,
-            lng: 121.50
+            lat: 25.033710,
+            lng: 121.564718
         },
         mapApiLoaded: false,
         mapInstance: null,
@@ -28,16 +28,25 @@ class Map extends Component  {
     this.setMapApiLoaded = this.setMapApiLoaded.bind(this);
     this.setMapInstance = this.setMapInstance.bind(this);
     this.findRestaurant = this.findRestaurant.bind(this);
-
+    this.initial = this.initial.bind(this);
+  }
+  componentDidMount() {
+  }
+  initial(){
+    if(this.state.mapApiLoaded){
+      if(this.state.mapInstance){
+        this.findRestaurant(this.state.mapInstance.center.lat(), this.state.mapInstance.center.lng())
+      }
+    }
   }
   setMapInstance(map) {
-    this.setState({mapInstance: map})
+    this.setState({mapInstance: map}, this.initial)
   }
   setMapApi(maps) {
     this.setState({mapApi: maps})
   }
   setMapApiLoaded(boolean) {
-    this.setState({mapApiLoaded: boolean})
+    this.setState({mapApiLoaded: boolean}, this.initial)
   }
   handleCenterChange () {
     // console.log('check22', this.state.mapApiLoaded)
@@ -85,7 +94,7 @@ class Map extends Component  {
                key={item.place_id}
                lat={item.geometry.location.lat()} 
                lng={item.geometry.location.lng()}
-               placeId={item.plcae_id}
+               placeID={item.plcae_id}
                text={item.name}/>
    })
    return (

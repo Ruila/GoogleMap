@@ -5,6 +5,7 @@ const informBolckReducer = (state, action) => {
       return{
         state: true,
         place_idx: action.place_idx,
+        place_id: action.place_id,
       };
     case 'HIDE':
       return{
