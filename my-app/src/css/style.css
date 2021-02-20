@@ -1,13 +1,12 @@
 #map {
     display: flex;
     justify-content: center;
-    padding-top: 70px;
     position: relative;
 }
 
 #map .content {
     width: 100%;
-    height: 500px;
+    height: 600px;
 }
 
 #locationMarker {

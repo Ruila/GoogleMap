@@ -12,7 +12,11 @@ class LocationMarker extends Component {
   }
   componentDidUpdate(prevProps, prevState){
     if(prevProps.informblock!==this.props.informblock){
-        
+        if(this.props.informblock.place_id===this.props.placeID){
+          this.setState({show: true})
+        } else {
+          this.setState({show: false})
+        }
       }
   }
   showLocationName () {

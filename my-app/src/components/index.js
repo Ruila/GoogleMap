@@ -74,7 +74,7 @@ class Map extends Component  {
           lat: lat,
           lng: lng
         },
-        radius: 100000,
+        radius: 500,
         type: ['restaurant']
       }
 
@@ -94,7 +94,7 @@ class Map extends Component  {
                key={item.place_id}
                lat={item.geometry.location.lat()} 
                lng={item.geometry.location.lng()}
-               placeID={item.plcae_id}
+               placeID={item.place_id}
                text={item.name}/>
    })
    return (
