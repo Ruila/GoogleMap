@@ -73,7 +73,6 @@ class Map extends Component  {
         if(status === this.state.mapApi.places.PlacesServiceStatus.OK) {
           console.log(results)
           this.setState({places: results})
-          this.props.dispatch({type: 'SETSHOPINFO', state: results});
         }
       })
     }
@@ -81,7 +80,6 @@ class Map extends Component  {
 
   
   render(){
-    console.log('in index', this.props.shopInfo)
    const placesList = this.state.places.map(item=>{
      return <LocationMarker
                key={item.place_id}
@@ -122,7 +120,7 @@ class Map extends Component  {
 
 function mapStateToProps(state) {
   return {
-    shopInfo: state.shopInfo
+   
   }
 }
 

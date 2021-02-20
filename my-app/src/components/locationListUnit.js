@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import InformationBlock from './informationBlock.js';
 
 class LocationListUnit extends Component {
   constructor(props) {
@@ -13,23 +12,22 @@ class LocationListUnit extends Component {
   }
   showInformBlock () {
     this.setState({informBlockShow: true})
-    console.log('in informationblock', this.props.shopInfo)
+    this.props.dispatch({type: 'SHOW', place_idx: this.props.idx});
   }
   hideInformBlock () {
     this.setState({informBlockShow: false})
+    this.props.dispatch({type: 'HIDE'});
   }
   render(){
     return(
       <div className="location_unit" onMouseEnter={this.showInformBlock} onMouseLeave={this.hideInformBlock}>
         <h5>{this.props.location_info.name}</h5>
-        <InformationBlock informBlockShow={this.state.informBlockShow} location_info={this.props.location_info}/>
       </div>
     );
   }
 }
 function mapStateToProps(state) {
   return {
-    shopInfo: state.shopInfo
   }
 }
 

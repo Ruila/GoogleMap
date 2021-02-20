@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LocationListUnit from './locationListUnit.js';
 import { connect } from 'react-redux';
+import InformationBlock from './informationBlock.js';
 
 class Board extends Component {
   constructor(props) {
@@ -26,7 +27,6 @@ class Board extends Component {
         for(let j=0; j<ary.length-i-1;j++) {
           if(!ary[j].price_level) ary[j].price_level=0;
           if(!ary[j+1].price_level) ary[j+1].price_level=0;
-          console.log(ary[j].price_level)
           if(ary[j].price_level < ary[j+1].price_level) {
             let tmp = ary[j];
             ary[j] = ary[j+1];
@@ -50,11 +50,12 @@ class Board extends Component {
       this.setState({places: ary})
   }
   render(){
-    const placesList = this.props.places.map(item=>{
-      return <LocationListUnit key={item.place_id} location_info={item} />
+    const placesList = this.state.places.map((item, idx)=>{
+      return <LocationListUnit key={item.place_id} location_info={item} idx={idx}/>
     })
     return(
       <div id="Board">
+        <InformationBlock informBlockShow={this.state.informBlockShow} places={this.state.places}/>
         <div className="filter">
           <div className="btn" onClick={this.filterRating}>
             <span>評價(高-低)</span>
@@ -74,7 +75,7 @@ class Board extends Component {
 
 function mapStateToProps(state) {
   return {
-    shopInfo: state.shopInfo
+    
   }
 }
 
