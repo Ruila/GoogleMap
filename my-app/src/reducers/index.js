@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import loadingReducer from './loading.js';
-import loginReducer from './login.js';
+import setShopInfoReducer from './shopInfo.js';
 
 const reducers = combineReducers({
-  load: loadingReducer,
-  loginCheck: loginReducer,
+  shopInfo: setShopInfoReducer,
 })
 
 export default reducers

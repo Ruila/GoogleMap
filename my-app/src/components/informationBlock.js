@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 
 class InformationBlock extends Component {
   constructor(props) {
@@ -12,10 +12,16 @@ class InformationBlock extends Component {
   render(){
     return(
       <div id="informationBlock" className={`${this.props.informBlockShow?'': 'hide'}`}>
-        {this.state.text}
+        {this.props.location_info.name}
+        <div></div>
       </div>
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    shopInfo: state.shopInfo
+  }
+}
 
-export default InformationBlock;
+export default connect(mapStateToProps)(InformationBlock);

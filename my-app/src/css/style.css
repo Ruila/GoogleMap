@@ -60,11 +60,13 @@ h5 {
 }
 
 #informationBlock {
-    width: 200px;
+    min-width: 200px;
     height: 100px;
+    padding: 10px;
     background-color: #ffffff;
     position: fixed;
     left: 50px;
+    top: 100px;
 }
 
 .hide {

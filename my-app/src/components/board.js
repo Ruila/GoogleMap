@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import InformationBlock from './informationBlock.js';
+import LocationListUnit from './locationListUnit.js';
+import { connect } from 'react-redux';
 
 class Board extends Component {
   constructor(props) {
@@ -10,8 +11,6 @@ class Board extends Component {
     }
     this.filterRating = this.filterRating.bind(this);
     this.filterPrice = this.filterPrice.bind(this);
-    this.showInformBlock = this.showInformBlock.bind(this);
-    this.hideInformBlock = this.hideInformBlock.bind(this);
   }
   componentDidMount () {
     
@@ -50,21 +49,12 @@ class Board extends Component {
       }
       this.setState({places: ary})
   }
-  showInformBlock () {
-    this.setState({informBlockShow: true})
-  }
-  hideInformBlock () {
-    this.setState({informBlockShow: false})
-  }
   render(){
-    const placesList = this.state.places.map(item=>{
-      return <div key={item.place_id} className="location_unit" onMouseEnter={this.showInformBlock} onMouseLeave={this.hideInformBlock}>
-              <h5>{item.name}</h5>
-            </div>
+    const placesList = this.props.places.map(item=>{
+      return <LocationListUnit key={item.place_id} location_info={item} />
     })
     return(
       <div id="Board">
-        <InformationBlock informBlockShow={this.state.informBlockShow} />
         <div className="filter">
           <div className="btn" onClick={this.filterRating}>
             <span>評價(高-低)</span>
@@ -82,4 +72,10 @@ class Board extends Component {
   }
 }
 
-export default Board;
+function mapStateToProps(state) {
+  return {
+    shopInfo: state.shopInfo
+  }
+}
+
+export default connect(mapStateToProps)(Board);
